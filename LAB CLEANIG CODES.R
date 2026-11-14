@@ -151,11 +151,10 @@ LAB$mothers_name <- trimws(gsub("\\s+", " ", as.character(LAB$mothers_name)))
 # Convert blank strings to NA
 LAB$mothers_name[LAB$mothers_name == ""] <- NA
 # Apply variable label
-install.packages("sjlabelled")
-library(sjlabelled)
-set_label(LAB$mothers_name) <- "Mother's name"
+# Check the label attribute directly
+attr(LAB$mothers_name, "label")<-"Mother's name"
 # Check it
-label(LAB$mothers_name)
+attr(LAB$mothers_name, "label")
 #turning them to proper lower cases
 LAB <- LAB %>%mutate(mothers_name = str_to_title(str_squish(str_to_lower(mothers_name))))
 # Verify
